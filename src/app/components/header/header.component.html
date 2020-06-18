@@ -27,7 +27,13 @@
     </div>
   </header>
 
+
   <section class="headerGlobal__menuArea mdl-layout__drawer" [ngClass]="{'headerGlobal__menuArea--active': isMenuOpen}">
+
+    <div class="margin">
+      <ng-content></ng-content>
+    </div>
+
 
     <span class="mdl-layout-title">
       <img class="headerGlobal__logo" src="assets/img/logo.svg" alt="CMail">
@@ -43,13 +49,13 @@
     </header>
   
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link">
+      <a class="mdl-navigation__link" routerLink="">
         <span class="material-icons">person</span> Login
       </a>
-      <a class="mdl-navigation__link">
+      <a class="mdl-navigation__link" routerLink="/cadastro">
         <span class="material-icons">create</span> Cadastro
       </a>
-      <a class="mdl-navigation__link">
+      <a class="mdl-navigation__link" routerLink="/inbox">
         <span class="material-icons">inbox</span> Caixa de Entrada
       </a>
       <a class="mdl-navigation__link">
@@ -57,4 +63,4 @@
       </a>
     </nav>
   </section>
-  <div class="headerGlobal__menuOverlay" [ngClass]="{'headerGlobal__menuArea--active': isMenuOpen}"></div>
+  <div class="headerGlobal__menuOverlay" [ngClass]="{'headerGlobal__menuArea--active': isMenuOpen}"  (click)="toggleMenu()"></div>
