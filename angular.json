@@ -8,8 +8,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "inlineStyle": true,
-          "export": false,
-          "spec": true,
+          "prefix": "cmail"
+        },
+        "@schematics/angular:directive": {
           "prefix": "cmail"
         }
       },
