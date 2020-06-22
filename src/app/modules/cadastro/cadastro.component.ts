@@ -37,7 +37,7 @@ export class CadastroComponent implements OnInit {
     username: new FormControl('', [Validators.required]),
     senha: new FormControl('', [Validators.required]),
     telefone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{4}-?[0-9]{4}[0-9]?')]),
-    avatar: new FormControl('', [], this.validaImagem.bind(this)),
+    avatar: new FormControl('', [Validators.required], this.validaImagem.bind(this)),
   })
   
   ngOnInit(): void {}
