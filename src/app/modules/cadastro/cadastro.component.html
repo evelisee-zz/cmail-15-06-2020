@@ -36,6 +36,13 @@
           </cmail-form-group>
 
 
+          <ul *ngIf="mensagemError" class="mdl-textfield is-invalid"> 
+            <li *ngFor="let erro of mensagemError" class="mdl-textfield__error">
+              {{erro.message}}: {{erro.value}}
+            </li>
+          </ul>
+
+
           <div class="mdl-card__actions">
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
               Cadastrar

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators'
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -10,13 +12,14 @@ import { map, catchError } from 'rxjs/operators'
   ]
 })
 export class CadastroComponent implements OnInit {
+  mensagemError = '';
   
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) { }
 
   validaImagem(campoDoFormulario: FormControl){
-    console.log(campoDoFormulario)
     return this.httpClient
       .head(campoDoFormulario.value, {
         observe: 'response'
@@ -51,8 +54,25 @@ export class CadastroComponent implements OnInit {
   }
 
   handleCadastrarUsuario() {
-    console.log(this.formCadastro)
+    const userDto = new User(this.formCadastro.value);
     if(this.formCadastro.valid) {
+      console.log(userDto)
+      console.log(this.formCadastro.value);
+      
+      this.httpClient
+      .post('http://localhost:3200/users', userDto)
+      .subscribe(
+        () => {
+          this.formCadastro.reset();
+          setTimeout(() => {
+            this.router.navigate(['login'])
+          }, 1000);
+        },
+        (response: HttpErrorResponse) => this.mensagemError = response.error.body
+      )
+
+
+
       this.formCadastro.reset();
     } else {
       this.validarTodosOsCamposDoFormulario(this.formCadastro);
