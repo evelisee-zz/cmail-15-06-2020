@@ -1,15 +1,22 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedComponentsModule } from 'src/app/components/shared-components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    SharedComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    LoginRoutingModule,
   ]
 })
 export class LoginModule { }
