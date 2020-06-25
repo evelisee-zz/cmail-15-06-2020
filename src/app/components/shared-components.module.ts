@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { CmailFormGroupComponent } from './cmail-form-group/cmail-form-group.component';
 import { CmailFormFieldDirective } from './cmail-form-group/cmail-form-field.directive';
+import { CmailListItemComponent } from './cmail-list-item/cmail-list-item.component';
 
 
 
@@ -11,7 +12,8 @@ import { CmailFormFieldDirective } from './cmail-form-group/cmail-form-field.dir
   declarations: [
     HeaderComponent,
     CmailFormGroupComponent,
-    CmailFormFieldDirective
+    CmailFormFieldDirective,
+    CmailListItemComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CmailFormFieldDirective } from './cmail-form-group/cmail-form-field.dir
   exports: [
     HeaderComponent,
     CmailFormGroupComponent,
-    CmailFormFieldDirective
+    CmailFormFieldDirective,
+    CmailListItemComponent
   ]
 })
 export class SharedComponentsModule { }

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
-  
-  api = 'http://localhost:3200/login';
+
+  api = `${environment.apiUrl}login`;
   
   constructor(private http: HttpClient) {}
-  
+
    logar(dadosLogin) {
      return this.http.post(this.api, dadosLogin)
      .pipe(
