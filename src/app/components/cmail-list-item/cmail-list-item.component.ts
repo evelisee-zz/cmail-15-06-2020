@@ -10,7 +10,7 @@ export class CmailListItemComponent implements OnInit {
   @Input() assunto = "";
   @Input() introducaoDoConteudo = "";
   @Input() dataDeEnvio = "";
-  @Output('qualquerCoisa') clicouNaLixeira = new EventEmitter();
+  @Output() clicouNaLixeira = new EventEmitter();
 
   constructor() { }
 

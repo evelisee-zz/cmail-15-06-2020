@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
+import { PageDataService } from 'src/app/page-data.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -22,10 +23,16 @@ export class CaixaDeEntradaComponent  implements OnInit{
     conteudo: '',
     id: ''
   }
+  valor = "";
 
-  constructor(private emailService: EmailService) {}
+  constructor(
+    private emailService: EmailService,
+    private pageData: PageDataService
+  ) {}
 
   ngOnInit() {
+    this.pageData.atualizaTitulo('Caixa de Entrada');
+
     this.emailService.listar()
     .subscribe(lista => {
       this.emailList = lista
@@ -39,6 +46,10 @@ export class CaixaDeEntradaComponent  implements OnInit{
 
   toggleNewEmailForm(){
     this._isNewEmailFormOpen = !this._isNewEmailFormOpen;
+  }
+
+  handle(event){
+    this.valor = event;
   }
 
   handleNewEmail(formEmail: NgForm) {

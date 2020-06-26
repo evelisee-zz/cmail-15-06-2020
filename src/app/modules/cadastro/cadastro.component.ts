@@ -4,6 +4,7 @@ import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common
 import { map, catchError } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { PageDataService } from 'src/app/page-data.service';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -16,7 +17,8 @@ export class CadastroComponent implements OnInit {
   
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private pageData: PageDataService
   ) { }
 
   validaImagem(campoDoFormulario: FormControl){
@@ -43,7 +45,9 @@ export class CadastroComponent implements OnInit {
     avatar: new FormControl('', [Validators.required], this.validaImagem.bind(this)),
   })
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pageData.atualizaTitulo('Cadastro') 
+  }
 
 
   validarTodosOsCamposDoFormulario(form: FormGroup){
