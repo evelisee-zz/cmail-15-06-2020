@@ -3,7 +3,6 @@
 
   <main class="mdl-layout__content">
     <div class="page-content">
-
         <ul>
           <li *ngFor="let email of emailList">
             <cmail-list-item
@@ -11,9 +10,10 @@
               [assunto]="email.assunto"
               [introducaoDoConteudo]="email.introducaoDoConteudo"
               [dataDeEnvio]="email.dataDeEnvio"
-            ></cmail-list-item>
-          </li>
-        </ul>
+              (clicouNaLixeira)="handleRemoveEmail(email.id)"
+              ></cmail-list-item>
+            </li>
+          </ul>
         
       
       <div class="mdl-grid">
@@ -59,7 +59,8 @@
               <div class="cmailInputForm">
                 <div class="mdl-textfield mdl-textfield--floating-label">
                   <textarea #conteudo="ngModel" [(ngModel)]="email.conteudo" name="conteudo" placeholder=" "  class="mdl-textfield__input"
-                    id="conteudo"></textarea>
+                    id="conteudo">
+                  </textarea>
                   <span class="mdl-textfield__error">Informar um conteúdo é obrigatório!</span>
                   <label class="mdl-textfield__label" for="conteudo">Conteúdo: </label>
                   <span class="mdl-textfield__formline"></span>

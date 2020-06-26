@@ -19,14 +19,18 @@ export class CaixaDeEntradaComponent  implements OnInit{
   email = {
     destinatario: '',
     assunto: '',
-    conteudo: ''
+    conteudo: '',
+    id: ''
   }
 
   constructor(private emailService: EmailService) {}
 
   ngOnInit() {
     this.emailService.listar()
-    .subscribe(lista => this.emailList = lista);
+    .subscribe(lista => {
+      this.emailList = lista
+      console.log(lista) 
+    });
   }
 
   get isNewEmailFormOpen(){
@@ -49,7 +53,8 @@ export class CaixaDeEntradaComponent  implements OnInit{
           this.email = {
             destinatario: '',
             assunto: '',
-            conteudo: ''
+            conteudo: '',
+            id: ''
           }
           formEmail.reset();
         }
@@ -57,6 +62,15 @@ export class CaixaDeEntradaComponent  implements OnInit{
       )
       
 
+  }
+
+  handleRemoveEmail(emailId) {
+    this.emailService
+      .deletar(emailId)
+      .subscribe(res => {
+        this.emailList = this.emailList.filter(email => email.id != emailId);
+      }
+      ,err => console.log(err))
   }
 
   

@@ -5,20 +5,20 @@
         <i class="material-icons mdl-list__item-avatar">person</i>
         <span>{{destinatario}}</span>
         <span class="emailList__itemText mdl-list__item-text-body">
-          {{assunto}}: {{introducaoDoConteudo}}
+          {{assunto | uppercase}}: {{introducaoDoConteudo}}
         </span>
       </a>
     </span>
     <span class="mdl-list__item-secondary-content">
       <a class="emailList__itemLink" tabindex="-1">
         <span class="emailList__itemDate">
-          {{dataDeEnvio}}
+          {{dataDeEnvio | date: 'dd/MM/yyyy' }}
         </span>
       </a>
     </span>
   
     <span class="emailList__itemMenu">
-      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="apagarEmail()">
         <i class="material-icons">delete</i>
       </button>
     </span>

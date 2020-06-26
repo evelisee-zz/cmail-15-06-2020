@@ -31,7 +31,8 @@ export class EmailService {
               destinatario: emailApi.to,
               assunto: emailApi.subject,
               conteudo: emailApi.content,
-              dataDeEnvio: emailApi.createdAt
+              dataDeEnvio: emailApi.createdAt,
+              id: emailApi.id,
             })
           }
         )
@@ -49,7 +50,8 @@ export class EmailService {
                 destinatario: emailApi.to,
                 assunto: emailApi.subject,
                 conteudo: emailApi.content,
-                dataDeEnvio: emailApi.createdAt
+                dataDeEnvio: emailApi.createdAt,
+                id: emailApi.id
               })
             )
           }
@@ -57,5 +59,8 @@ export class EmailService {
     )
   }
 
-  
+  deletar(id){
+    return this.http
+    .delete(`${this.api}/${id}`, {headers: this.cabecalho})
+  }
 }
