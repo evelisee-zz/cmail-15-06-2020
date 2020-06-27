@@ -46,7 +46,7 @@ export class CadastroComponent implements OnInit {
   })
   
   ngOnInit(): void {
-    this.pageData.atualizaTitulo('Cadastro') 
+    this.pageData.atualizaTitulo('Cadastro');
   }
 
 

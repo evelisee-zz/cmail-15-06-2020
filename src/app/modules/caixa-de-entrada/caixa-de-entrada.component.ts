@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
 import { PageDataService } from 'src/app/page-data.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -17,6 +18,8 @@ import { PageDataService } from 'src/app/page-data.service';
 export class CaixaDeEntradaComponent  implements OnInit{
   private _isNewEmailFormOpen = false;
   emailList = [];
+  termoParaFiltro = "";
+  teste = "eve@gmail.com";
   email = {
     destinatario: '',
     assunto: '',
@@ -27,7 +30,8 @@ export class CaixaDeEntradaComponent  implements OnInit{
 
   constructor(
     private emailService: EmailService,
-    private pageData: PageDataService
+    private pageData: PageDataService,
+    private headerService: HeaderService
   ) {}
 
   ngOnInit() {
@@ -36,7 +40,10 @@ export class CaixaDeEntradaComponent  implements OnInit{
     this.emailService.listar()
     .subscribe(lista => {
       this.emailList = lista
-      console.log(lista) 
+    });
+
+    this.headerService.valorDoFiltro.subscribe(novoValor => {
+      this.termoParaFiltro = novoValor
     });
   }
 
@@ -50,6 +57,15 @@ export class CaixaDeEntradaComponent  implements OnInit{
 
   handle(event){
     this.valor = event;
+  }
+
+  filtrarEmailPorAssunto() {
+    const termoParaFiltoEmMinusco = this.termoParaFiltro.toLowerCase();
+
+    return this.emailList.filter( email => {
+      const assunto = email.assunto.toLowerCase();
+      return assunto.includes(termoParaFiltoEmMinusco);
+    })
   }
 
   handleNewEmail(formEmail: NgForm) {
